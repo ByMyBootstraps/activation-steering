@@ -32,9 +32,9 @@ Then, for each prompt in a different subset, I generate model continuations and 
 
 Finally, I test whether the cosine similarity between either of those activations and my steering vectors is predictive of sycophancy on other examples.
 
-I also tried repeated the experiment predicting accuracy on a subset of TruthfulQA whose answers which I graded by hand. 
+I also repeat the experiment by predicting accuracy on a subset of TruthfulQA. I graded the generations for accuracy by hand.
 
-For both post-prompt and post-continuation activations: the steering vector was highly predictive of sycophancy in distribution (when the examples are also from the sycophancy dataset) and not at all predictive out of distribution (on TruthfulQA). However, this comes with the important caveat that my out of distribution test was pretty bad.
+For both post-prompt and post-continuation activations, I find that the steering vector is predictive of sycophancy in distribution (when the examples are also from the sycophancy dataset) and not predictive out of distribution (on TruthfulQA). However, this comes with the important caveat that my out of distribution test was pretty bad.
 
 Confusingly, sycophancy correlates positively with cosine similarity at layer 13 and then smoothly decreases up to layer 30 where it is significantly negative.
 
