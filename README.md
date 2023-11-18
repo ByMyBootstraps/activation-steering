@@ -13,7 +13,7 @@ b) measure how much the cosine similarity between the model's actual activations
 This project is very unfinished as of 11/17/23 because I wanted to publish this codebase so I could link in on my MATS application.
 In particular, all experiments are performed on Zephyr-7B beta at very small scale and I really want to acquire better datasets.
 
-Key differences from [https://www.lesswrong.com/posts/zt6hRsDE84HeBKh7E/reducing-sycophancy-and-improving-honesty-via-activation#Reducing_sycophancy_via_activation_steering](Reducing sycophancy and improving honesty via activation steering):
+Key differences from [Reducing sycophancy and improving honesty via activation steering](https://www.lesswrong.com/posts/zt6hRsDE84HeBKh7E/reducing-sycophancy-and-improving-honesty-via-activation#Reducing_sycophancy_via_activation_steering):
 - I mostly used finetuning to get my diffs, more on that below
 - Zephyr is heavily fine-tuned
 
@@ -25,4 +25,21 @@ One: For each prompt in a subset of Anthropic's [sycophancy dataset](https://hug
 
 Two: For each prompt in a subset of the sycophancy dataset, I present the model with a transcript where the decision has already been made and attempt to infer from its activation whether that decision was the sycophantic option.
 
-In both cases: the steering vector was highly predictive of sycophancy in distribution (the examples are also from the sycophancy dataset) and not at all predictive out of distribution (on a subset of TruthfulQA with answers I graded by hand). However, this comes with the important caveat that my out of distribution test was pretty bad.
+I also tried this with a subset of TruthfulQA with answers which I graded by hand. 
+
+In both cases: the steering vector was highly predictive of sycophancy in distribution (the examples are also from the sycophancy dataset) and not at all predictive out of distribution (on TruthfulQA). However, this comes with the important caveat that my out of distribution test was pretty bad.
+
+Additionally, the steering vector was not at all predictive on layer 13. The predictivity required that we look at layer 30.
+
+![truthful qa with continuation 13](./images/truthfulqa_continuation_13.png)
+![truthful qa from prompt 13](./images/truthfulqa_prompt_13.png)
+
+![truthful qa with continuation 30](./images/truthfulqa_continuation_30.png)
+![truthful qa from prompt 30](./images/truthfulqa_prompt_30.png)
+
+
+![anthropic with continuation 13](./images/anthropic_continuation_13.png)
+![anthropic from prompt 13](./images/anthropic_prompt_13.png)
+
+![anthropic with continuation 30](./images/anthropic_continuation_30.png)
+![anthropic from prompt 30](./images/anthropic_prompt_30.png)
