@@ -24,7 +24,7 @@ This project is very unfinished as of 11/17/23 because I wanted to publish this 
 In particular, all experiments are performed on LLaMa or Zephyr-7B-beta at very small scale and I really want to acquire more diverse datasets and reproduce some of the original author's later experiments. Additionally, I don't yet answer the questions which originally drove this project: how much do extracted steering vectors vary depending on the set of prompts they were extracted from? And what features of the extraction process influence the predictivity of the resulting vectors?
 
 # Predictivity of steering vectors
-Premise: if we have successfully identified a vector that encodes something like "respond sycophantically", we might expect that, in situations were the model is spontaneously behaving sycophantically, its activations would have high cosine similarity with that vector. Whereas if it encodes some other target which leads to sycophancy there is less reason to expect unrelated sycophancy to have the same cause.
+Premise: if we have successfully identified a vector that encodes something like "respond sycophantically", we might expect that, in situations where the model is spontaneously behaving sycophantically, its activations would have high cosine similarity with that vector. Whereas if it encodes some other target which leads to sycophancy there is less reason to expect unrelated sycophancy to have the same cause.
 
 To investigate predictivity, I start by extracting steering vectors for sycophancy from activations on Anthropic's [sycophancy dataset](https://huggingface.co/datasets/Anthropic/model-written-evals/tree/main/sycophancy) in the same fashion as the original paper.
 
@@ -75,7 +75,7 @@ The original conceit of this project was to investigate whether fine-tuning a hi
 This would provide hints about how foundation models learn new skills and, if answered posivitely, would cause me to update towards believing that large language models can meaningfully be said to have simple encodings for high level targets like "behave sycophantically".
 
 My immediate plan is to:
-1) implement actually measures of predictivity rather than looking at graphs and observing that some graphs have an obvious trendline and some do not.
+1) implement numeric measures of predictivity rather than looking at graphs and observing that some graphs have an obvious trendline and some do not.
 2) build some simple tools for measuring consistency between two steering vectors
 3) investigate whether sycophancy can be modulated by removing the component of the models intermediate activation which is parallel to my steering vector
 4) repeat my experiments with steering vectors derived by fine-tuning Zephyr and from other, differently structured datasets
