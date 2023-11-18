@@ -2,6 +2,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig, pipeline
 from matplotlib import pyplot as plt
 from matplotlib.ticker import ScalarFormatter
+import os
 
 def buildTokenizer():
     tokenizer = AutoTokenizer.from_pretrained(
@@ -20,7 +21,8 @@ def buildModel(checkpoint):
         bnb_4bit_quant_type="nf4",
         bnb_4bit_compute_dtype=torch.bfloat16
     )
-    model = AutoModelForCausalLM.from_pretrained(checkpoint, quantization_config=bnb_config)
+    token = os.environ.get( "HF_TOKEN", "")
+    model = AutoModelForCausalLM.from_pretrained(checkpoint, quantization_config=bnb_config, use_auth_token=token)
     return model
 
 

@@ -45,10 +45,13 @@ def get_pre_post_activations(friendly_name, min_layer=13, max_layer=30):
 def get_preds(friendly_name):
     return torch.load(os.path.join(data_path, f"{friendly_name}_preds.pt"))
 
-def high_low_vector( zephyr, friendly_name, layer, multiplier, question, max_length=200 ):
+def high_low_vector( zephyr, friendly_name, layer, multiplier, question, max_length=200, diff_style="og" ):
     # Generate outputs
     zephyr.set_only_add_to_first_token(False)
-    vec = get_steering_vector(layer, friendly_name)
+    if diff_style == "og":
+        vec = get_steering_vector_og_style( layer, friendly_name )
+    else:
+        vec = get_steering_vector(layer, friendly_name)
     pos_multiplier = multiplier
     neg_multiplier = multiplier * -1.0
     zephyr.set_save_internal_decodings(False)
