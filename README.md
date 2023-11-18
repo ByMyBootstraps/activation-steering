@@ -14,11 +14,13 @@ If steering vectors are robustly predictive, that suggests that, in practice, sy
 That would suggest that they represent something closer to a general optimization target than a specific structural feature which happens to lead to sycophancy.
 
 To that end, I:
-a) generate steering vectors in multiple ways and explore how they vary in usefulness for steering the model and for prediciting model behavior
-b) measure how much the cosine similarity between the model's actual activations and the steering vectors correlates with the sycophantism of the output
-(except (a) is largely a work in progress).
+1) generate steering vectors in multiple ways and explore how they vary in usefulness for steering the model and for prediciting model behavior
+2) measure how much the cosine similarity between the model's actual activations and the steering vectors correlates with the sycophantism of the output
+
+(except (1) is largely a work in progress).
 
 This project is very unfinished as of 11/17/23 because I wanted to publish this codebase so I could link in on my MATS application.
+
 In particular, all experiments are performed on LLaMa or Zephyr-7B beta at very small scale and I really want to acquire more diverse datasets and reproduce some of the original author's later experiments. Additionally, I don't yet answer the questions which originally drove this project: how much do extracted steering vectors vary depending on the set of prompts they were extracted from? And what features of the extraction process influence the predictivity of the resulting vectors?
 
 Note that, unlike, the original paper, I do my experiments on Zephyr-7b-beta, which is heavily fine-tuned for chat and honesty.
